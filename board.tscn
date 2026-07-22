@@ -1,0 +1,158 @@
+[gd_scene format=3 uid="uid://wrjt5f024n14"]
+
+[ext_resource type="Script" uid="uid://3220oi4kpctb" path="res://board.gd" id="1_psm7c"]
+
+[node name="Board" type="Node3D" unique_id=716995204]
+script = ExtResource("1_psm7c")
+
+[node name="Pieces" type="Node3D" parent="." unique_id=175908815]
+
+[node name="White" type="Node3D" parent="Pieces" unique_id=1199609709]
+unique_name_in_owner = true
+
+[node name="W1" type="Marker3D" parent="Pieces/White" unique_id=1348663459]
+unique_name_in_owner = true
+
+[node name="W2" type="Marker3D" parent="Pieces/White" unique_id=956515305]
+unique_name_in_owner = true
+
+[node name="W3" type="Marker3D" parent="Pieces/White" unique_id=2011463377]
+unique_name_in_owner = true
+
+[node name="W4" type="Marker3D" parent="Pieces/White" unique_id=507523960]
+unique_name_in_owner = true
+
+[node name="W5" type="Marker3D" parent="Pieces/White" unique_id=1430240140]
+unique_name_in_owner = true
+
+[node name="W6" type="Marker3D" parent="Pieces/White" unique_id=188526369]
+unique_name_in_owner = true
+
+[node name="W7" type="Marker3D" parent="Pieces/White" unique_id=1686341288]
+unique_name_in_owner = true
+
+[node name="W8" type="Marker3D" parent="Pieces/White" unique_id=1047055264]
+unique_name_in_owner = true
+
+[node name="W9" type="Marker3D" parent="Pieces/White" unique_id=1366848125]
+unique_name_in_owner = true
+
+[node name="W10" type="Marker3D" parent="Pieces/White" unique_id=471720532]
+unique_name_in_owner = true
+
+[node name="W11" type="Marker3D" parent="Pieces/White" unique_id=2146288880]
+unique_name_in_owner = true
+
+[node name="W12" type="Marker3D" parent="Pieces/White" unique_id=1667929766]
+unique_name_in_owner = true
+
+[node name="W13" type="Marker3D" parent="Pieces/White" unique_id=2103480148]
+unique_name_in_owner = true
+
+[node name="W14" type="Marker3D" parent="Pieces/White" unique_id=215826285]
+unique_name_in_owner = true
+
+[node name="W15" type="Marker3D" parent="Pieces/White" unique_id=2082435639]
+unique_name_in_owner = true
+
+[node name="W16" type="Marker3D" parent="Pieces/White" unique_id=1737622369]
+unique_name_in_owner = true
+
+[node name="W17" type="Marker3D" parent="Pieces/White" unique_id=849816011]
+unique_name_in_owner = true
+
+[node name="W18" type="Marker3D" parent="Pieces/White" unique_id=743129939]
+unique_name_in_owner = true
+
+[node name="W19" type="Marker3D" parent="Pieces/White" unique_id=2050484098]
+unique_name_in_owner = true
+
+[node name="W20" type="Marker3D" parent="Pieces/White" unique_id=1382936337]
+unique_name_in_owner = true
+
+[node name="W21" type="Marker3D" parent="Pieces/White" unique_id=864589976]
+unique_name_in_owner = true
+
+[node name="W22" type="Marker3D" parent="Pieces/White" unique_id=1999977966]
+unique_name_in_owner = true
+
+[node name="W23" type="Marker3D" parent="Pieces/White" unique_id=1846971226]
+unique_name_in_owner = true
+
+[node name="W24" type="Marker3D" parent="Pieces/White" unique_id=1863179348]
+unique_name_in_owner = true
+
+[node name="Black" type="Node3D" parent="Pieces" unique_id=1275855586]
+unique_name_in_owner = true
+
+[node name="B1" type="Marker3D" parent="Pieces/Black" unique_id=798271510]
+unique_name_in_owner = true
+
+[node name="B2" type="Marker3D" parent="Pieces/Black" unique_id=1599302092]
+unique_name_in_owner = true
+
+[node name="B3" type="Marker3D" parent="Pieces/Black" unique_id=130841017]
+unique_name_in_owner = true
+
+[node name="B4" type="Marker3D" parent="Pieces/Black" unique_id=372859007]
+unique_name_in_owner = true
+
+[node name="B5" type="Marker3D" parent="Pieces/Black" unique_id=1273446731]
+unique_name_in_owner = true
+
+[node name="B6" type="Marker3D" parent="Pieces/Black" unique_id=822071581]
+unique_name_in_owner = true
+
+[node name="B7" type="Marker3D" parent="Pieces/Black" unique_id=616679771]
+unique_name_in_owner = true
+
+[node name="B8" type="Marker3D" parent="Pieces/Black" unique_id=147982391]
+unique_name_in_owner = true
+
+[node name="B9" type="Marker3D" parent="Pieces/Black" unique_id=938019422]
+unique_name_in_owner = true
+
+[node name="B10" type="Marker3D" parent="Pieces/Black" unique_id=855623483]
+unique_name_in_owner = true
+
+[node name="B11" type="Marker3D" parent="Pieces/Black" unique_id=764483699]
+unique_name_in_owner = true
+
+[node name="B12" type="Marker3D" parent="Pieces/Black" unique_id=581736908]
+unique_name_in_owner = true
+
+[node name="B13" type="Marker3D" parent="Pieces/Black" unique_id=1779574480]
+unique_name_in_owner = true
+
+[node name="B14" type="Marker3D" parent="Pieces/Black" unique_id=1431488109]
+unique_name_in_owner = true
+
+[node name="B15" type="Marker3D" parent="Pieces/Black" unique_id=133589290]
+unique_name_in_owner = true
+
+[node name="B16" type="Marker3D" parent="Pieces/Black" unique_id=1158168315]
+unique_name_in_owner = true
+
+[node name="B17" type="Marker3D" parent="Pieces/Black" unique_id=1725032782]
+unique_name_in_owner = true
+
+[node name="B18" type="Marker3D" parent="Pieces/Black" unique_id=1613349684]
+unique_name_in_owner = true
+
+[node name="B19" type="Marker3D" parent="Pieces/Black" unique_id=1308808468]
+unique_name_in_owner = true
+
+[node name="B20" type="Marker3D" parent="Pieces/Black" unique_id=210594697]
+unique_name_in_owner = true
+
+[node name="B21" type="Marker3D" parent="Pieces/Black" unique_id=732572187]
+unique_name_in_owner = true
+
+[node name="B22" type="Marker3D" parent="Pieces/Black" unique_id=1764995999]
+unique_name_in_owner = true
+
+[node name="B23" type="Marker3D" parent="Pieces/Black" unique_id=1052973674]
+unique_name_in_owner = true
+
+[node name="B24" type="Marker3D" parent="Pieces/Black" unique_id=1914827571]
+unique_name_in_owner = true
