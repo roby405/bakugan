@@ -1,10 +1,20 @@
 [gd_scene format=3 uid="uid://dr1lh0kpakg2i"]
 
-[ext_resource type="Script" uid="uid://cl2i3y7bqnad1" path="res://game.gd" id="1_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://wrjt5f024n14" path="res://board.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://qxxl4touesqw" path="res://assets/dice.glb" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://uh7p5ry6v3xv" path="res://assets/board-bakugan3.glb" id="2_7jktm"]
+[ext_resource type="PackedScene" uid="uid://c2iddlay8lg7b" path="res://assets/piece-b-bakugan.fbx" id="3_ryrav"]
+[ext_resource type="PackedScene" uid="uid://copb26wpjwxts" path="res://assets/piece-w-bakugan.fbx" id="4_eow3j"]
 
-[node name="Game" type="Node3D" unique_id=418444710]
-script = ExtResource("1_e2o6t")
+[node name="Node3D" type="Node3D" unique_id=2070608447]
 
-[node name="Board" parent="." unique_id=716995204 instance=ExtResource("2_feb5d")]
-unique_name_in_owner = true
+[node name="dice" parent="." unique_id=1232948220 instance=ExtResource("1_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96708935, 0.057086945, 0.73608494)
+
+[node name="board-bakugan3" parent="." unique_id=1753720653 instance=ExtResource("2_7jktm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.220143, 0, 0.57104874)
+
+[node name="piece-b-bakugan" parent="." unique_id=1269219579 instance=ExtResource("3_ryrav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.051217, -9.536743e-07, -7.32825)
+
+[node name="piece-w-bakugan" parent="." unique_id=1872118781 instance=ExtResource("4_eow3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.009074, 0, -12.113293)
