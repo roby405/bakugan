@@ -13,161 +13,214 @@ unique_name_in_owner = true
 
 [node name="W1" type="Marker3D" parent="Pieces/White" unique_id=1348663459]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.764682, 0.111846685, -8.28381)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 8.29226)
 
 [node name="W2" type="Marker3D" parent="Pieces/White" unique_id=956515305]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 6.9)
 
 [node name="W3" type="Marker3D" parent="Pieces/White" unique_id=2011463377]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 5.524505)
 
 [node name="W4" type="Marker3D" parent="Pieces/White" unique_id=507523960]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 4.1482635)
 
 [node name="W5" type="Marker3D" parent="Pieces/White" unique_id=1430240140]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 2.7564292)
 
 [node name="W6" type="Marker3D" parent="Pieces/White" unique_id=188526369]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.740392, 0.24220514, 1.8495021)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 1.414)
+gizmo_extents = 1.92
 
 [node name="W7" type="Marker3D" parent="Pieces/White" unique_id=1686341288]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, -1.3969034)
 
 [node name="W8" type="Marker3D" parent="Pieces/White" unique_id=1047055264]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, -2.7941473)
+gizmo_extents = 0.6
 
 [node name="W9" type="Marker3D" parent="Pieces/White" unique_id=1366848125]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, -4.153)
 
 [node name="W10" type="Marker3D" parent="Pieces/White" unique_id=471720532]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, -5.5322766)
 
 [node name="W11" type="Marker3D" parent="Pieces/White" unique_id=2146288880]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, -6.9153595)
 
 [node name="W12" type="Marker3D" parent="Pieces/White" unique_id=1667929766]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, -8.270838)
 
 [node name="W13" type="Marker3D" parent="Pieces/White" unique_id=2103480148]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.768728, 0.460495, -8.160224)
+transform = Transform3D(0.6101716, -0.05118865, 0.79061395, 0, 0.9979106, 0.06461017, -0.79226935, -0.039423287, 0.6088967, 6.84, 0.003, -8.275)
+gizmo_extents = 0.69
 
 [node name="W14" type="Marker3D" parent="Pieces/White" unique_id=215826285]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, -6.903)
 
 [node name="W15" type="Marker3D" parent="Pieces/White" unique_id=2082435639]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, -5.531)
 
 [node name="W16" type="Marker3D" parent="Pieces/White" unique_id=1737622369]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, -4.159)
 
 [node name="W17" type="Marker3D" parent="Pieces/White" unique_id=849816011]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, -2.787)
 
 [node name="W18" type="Marker3D" parent="Pieces/White" unique_id=743129939]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, -1.415)
 
 [node name="W19" type="Marker3D" parent="Pieces/White" unique_id=2050484098]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, 1.407)
 
 [node name="W20" type="Marker3D" parent="Pieces/White" unique_id=1382936337]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, 2.779)
 
 [node name="W21" type="Marker3D" parent="Pieces/White" unique_id=864589976]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, 4.151)
 
 [node name="W22" type="Marker3D" parent="Pieces/White" unique_id=1999977966]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, 5.523)
 
 [node name="W23" type="Marker3D" parent="Pieces/White" unique_id=1846971226]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, 6.895)
 
 [node name="W24" type="Marker3D" parent="Pieces/White" unique_id=1863179348]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.84, 0.003, 8.267)
+gizmo_extents = 1.13
 
 [node name="Black" type="Node3D" parent="Pieces" unique_id=1275855586]
 unique_name_in_owner = true
 
-[node name="B1" type="Marker3D" parent="Pieces/Black" unique_id=798271510]
+[node name="B1" type="Marker3D" parent="Pieces/Black" unique_id=607717902]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, 8.270335)
 
-[node name="B2" type="Marker3D" parent="Pieces/Black" unique_id=1599302092]
+[node name="B2" type="Marker3D" parent="Pieces/Black" unique_id=321276998]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, 6.8780756)
 
-[node name="B3" type="Marker3D" parent="Pieces/Black" unique_id=130841017]
+[node name="B3" type="Marker3D" parent="Pieces/Black" unique_id=693963647]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, 5.5025806)
 
-[node name="B4" type="Marker3D" parent="Pieces/Black" unique_id=372859007]
+[node name="B4" type="Marker3D" parent="Pieces/Black" unique_id=1686624529]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, 4.126339)
 
-[node name="B5" type="Marker3D" parent="Pieces/Black" unique_id=1273446731]
+[node name="B5" type="Marker3D" parent="Pieces/Black" unique_id=1009481395]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, 2.7345045)
 
-[node name="B6" type="Marker3D" parent="Pieces/Black" unique_id=822071581]
+[node name="B6" type="Marker3D" parent="Pieces/Black" unique_id=1376013298]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, 1.3920753)
+gizmo_extents = 1.92
 
-[node name="B7" type="Marker3D" parent="Pieces/Black" unique_id=616679771]
+[node name="B7" type="Marker3D" parent="Pieces/Black" unique_id=113898810]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, -1.4188281)
 
-[node name="B8" type="Marker3D" parent="Pieces/Black" unique_id=147982391]
+[node name="B8" type="Marker3D" parent="Pieces/Black" unique_id=1380632955]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, -2.816072)
+gizmo_extents = 0.6
 
-[node name="B9" type="Marker3D" parent="Pieces/Black" unique_id=938019422]
+[node name="B9" type="Marker3D" parent="Pieces/Black" unique_id=1197604046]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, -4.174925)
 
-[node name="B10" type="Marker3D" parent="Pieces/Black" unique_id=855623483]
+[node name="B10" type="Marker3D" parent="Pieces/Black" unique_id=504894233]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, -5.554201)
 
-[node name="B11" type="Marker3D" parent="Pieces/Black" unique_id=764483699]
+[node name="B11" type="Marker3D" parent="Pieces/Black" unique_id=349078870]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, -6.9372845)
 
-[node name="B12" type="Marker3D" parent="Pieces/Black" unique_id=581736908]
+[node name="B12" type="Marker3D" parent="Pieces/Black" unique_id=1186493090]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.8612742, 0.0024182587, -8.292763)
 
-[node name="B13" type="Marker3D" parent="Pieces/Black" unique_id=1779574480]
+[node name="B13" type="Marker3D" parent="Pieces/Black" unique_id=1006388636]
 unique_name_in_owner = true
+transform = Transform3D(0.6101716, -0.05118865, 0.79061395, 0, 0.9979106, 0.06461017, -0.79226935, -0.039423287, 0.6088967, 6.818726, 0.0024182587, -8.296925)
+gizmo_extents = 0.69
 
-[node name="B14" type="Marker3D" parent="Pieces/Black" unique_id=1431488109]
+[node name="B14" type="Marker3D" parent="Pieces/Black" unique_id=950509205]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, -6.924925)
 
-[node name="B15" type="Marker3D" parent="Pieces/Black" unique_id=133589290]
+[node name="B15" type="Marker3D" parent="Pieces/Black" unique_id=823240535]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, -5.552925)
 
-[node name="B16" type="Marker3D" parent="Pieces/Black" unique_id=1158168315]
+[node name="B16" type="Marker3D" parent="Pieces/Black" unique_id=189845809]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, -4.1809244)
 
-[node name="B17" type="Marker3D" parent="Pieces/Black" unique_id=1725032782]
+[node name="B17" type="Marker3D" parent="Pieces/Black" unique_id=642995587]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, -2.8089247)
 
-[node name="B18" type="Marker3D" parent="Pieces/Black" unique_id=1613349684]
+[node name="B18" type="Marker3D" parent="Pieces/Black" unique_id=246760578]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, -1.4369247)
 
-[node name="B19" type="Marker3D" parent="Pieces/Black" unique_id=1308808468]
+[node name="B19" type="Marker3D" parent="Pieces/Black" unique_id=2137750306]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, 1.3850752)
 
-[node name="B20" type="Marker3D" parent="Pieces/Black" unique_id=210594697]
+[node name="B20" type="Marker3D" parent="Pieces/Black" unique_id=1601245975]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, 2.7570753)
 
-[node name="B21" type="Marker3D" parent="Pieces/Black" unique_id=732572187]
+[node name="B21" type="Marker3D" parent="Pieces/Black" unique_id=467427279]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, 4.129075)
 
-[node name="B22" type="Marker3D" parent="Pieces/Black" unique_id=1764995999]
+[node name="B22" type="Marker3D" parent="Pieces/Black" unique_id=1941828499]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, 5.501075)
 
-[node name="B23" type="Marker3D" parent="Pieces/Black" unique_id=1052973674]
+[node name="B23" type="Marker3D" parent="Pieces/Black" unique_id=1030230675]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, 6.8730755)
 
-[node name="B24" type="Marker3D" parent="Pieces/Black" unique_id=1914827571]
+[node name="B24" type="Marker3D" parent="Pieces/Black" unique_id=1217901878]
 unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.818726, 0.0024182587, 8.245075)
+gizmo_extents = 1.13
 
 [node name="board-bakugan3" parent="." unique_id=1428815050 instance=ExtResource("2_psm7c")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=806383452]
-transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -4.0345116, 9.631356, 10.011218)
+transform = Transform3D(-0.014886644, 0.9316161, -0.36313885, 0, 0.3631791, 0.93171936, 0.9998892, 0.013870174, -0.0054065175, -5.6753983, 13.721589, 3.506378)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=962755844]
-transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -4.0345116, 9.631356, 10.011218)
+transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -3.994936, 9.66273, 10.087943)
 light_energy = 16.0
 omni_range = 1097.272
