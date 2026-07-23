@@ -1,16 +1,13 @@
 [gd_scene format=3 uid="uid://dr1lh0kpakg2i"]
 
-[ext_resource type="PackedScene" uid="uid://d3isikksumkm5" path="res://assets/board.glb" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://ddhe67tku4cj0" path="res://assets/dice.glb" id="1_fc0e3"]
 [ext_resource type="Script" uid="uid://cl2i3y7bqnad1" path="res://game.gd" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://c0ta50wb776wb" path="res://assets/piece-w.glb" id="3_ryrav"]
 [ext_resource type="PackedScene" uid="uid://b1n63vhl7t17w" path="res://assets/piece-b.glb" id="4_eow3j"]
+[ext_resource type="PackedScene" uid="uid://wrjt5f024n14" path="res://board.tscn" id="5_7jktm"]
 
 [node name="Node" type="Node" unique_id=698801991]
 script = ExtResource("1_ryrav")
-
-[node name="board" parent="." unique_id=936023970 instance=ExtResource("1_7jktm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.273016, 0, -0.29463387)
 
 [node name="dice" parent="." unique_id=1401142141 instance=ExtResource("1_fc0e3")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27020752, 0.49608034, -3.4399717)
@@ -64,13 +61,13 @@ layout_mode = 2
 size_flags_vertical = 3
 text = "Gheara de tigru"
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=1364533668]
-transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -4.0345116, 9.631356, 10.011218)
-
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1693842190]
 transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -4.0345116, 9.631356, 10.011218)
 light_energy = 16.0
 omni_range = 1097.272
+
+[node name="Board" parent="." unique_id=716995204 instance=ExtResource("5_7jktm")]
+unique_name_in_owner = true
 
 [connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
 [connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]

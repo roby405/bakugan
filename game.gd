@@ -57,7 +57,7 @@ func initialize_game(player, nameP1, colorP1, nameP2, colorP2) -> void:
 	self.player = player
 	initialize_player(nameP1, colorP1)
 	initialize_player(nameP2, colorP2)
-	boardNode.setup_board()
+	boardNode.setup_board(board)
 
 func initialize_player(name: String, color: String) -> void:
 	if color == "W":
