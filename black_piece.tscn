@@ -2,7 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://b1n63vhl7t17w" path="res://assets/piece-b.glb" id="1_s23uw"]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yhysn"]
+height = 0.3
+radius = 0.67
+
 [node name="Piece" type="Node3D" unique_id=191121857]
 
 [node name="piece-b" parent="." unique_id=401715758 instance=ExtResource("1_s23uw")]
 transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="piece-b" unique_id=951585411]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="piece-b/Area3D" unique_id=1256503573]
+shape = SubResource("CylinderShape3D_yhysn")
