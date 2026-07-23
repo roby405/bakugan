@@ -1,4 +1,4 @@
-extends Node3D
+extends Node
 
 enum MOVES {
 	MOVE,
@@ -8,7 +8,7 @@ enum MOVES {
 }
 
 @onready
-var board = get_node("%Board")
+var boardNode = get_node("%Board")
 
 var white_bearing_off = false
 var black_bearing_off = false
@@ -24,6 +24,53 @@ var double = false
 
 var turn = "W"
 
+var INITIAL_WHITE_PLAYER_STATE: Dictionary = {
+	"pieces": {
+		6: 5,
+		8: 3,
+		13: 5,
+		24: 2
+	}
+}
+
+var INITIAL_BLACK_PLAYER_STATE: Dictionary = {
+	"pieces": {
+		19: 5,
+		17: 3,
+		12: 5,
+		1: 2
+	}
+}
+
+var board: Dictionary = {
+	"turn": 1,
+	"toPlay": "white"
+}
+
+var player: String
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	initialize_game("W", "arst", "W", "art", "B")
+
+func initialize_game(player, nameP1, colorP1, nameP2, colorP2) -> void:
+	self.player = player
+	initialize_player(nameP1, colorP1)
+	initialize_player(nameP2, colorP2)
+	boardNode.setup_board()
+
+func initialize_player(name: String, color: String) -> void:
+	if color == "W":
+		var new_player = INITIAL_WHITE_PLAYER_STATE
+		new_player["color"] = color
+		new_player["name"] = name
+		board["W"] = new_player
+	else:
+		var new_player = INITIAL_BLACK_PLAYER_STATE
+		new_player["color"] = color
+		new_player["name"] = name
+		board["B"] = new_player
+
 func roll_dice() -> void:
 	var die1: int = randi_range(1, 6)
 	var die2: int = randi_range(1, 6)
@@ -38,9 +85,25 @@ func broadcast_dice_roll(die1: int, die2: int) -> void:
 
 @rpc("any_peer", "call_remote", "reliable")
 func make_move(moveType: MOVES, color: String, row: int, dest: int):
-	if is_move_legal(color, row, dest):
-		# captures whatever
-		board.move_piece(color, row, dest)
+	match moveType:
+		MOVES.MOVE:
+			if is_move_legal(color, row, dest):
+				# captures whatever (runs make_move again)
+				board[color][row] -= 1
+				if dest == 0: # prison
+					pass
+				else:
+					if not dest in board[color]:
+						board[color][dest] = 0
+					board[color][dest] += 1
+				boardNode.move_piece(color, row, dest)
+		MOVES.CAPTURE:
+			capture_piece(color, row)
+				
+		MOVES.BORNE_OFF:
+			borne_off_piece(color, row)
+		MOVES.PRISON_ESCAPE:
+			pass
 	
 @rpc("any_peer", "call_remote", "reliable")
 func switch_turn() -> void:
@@ -144,7 +207,8 @@ func is_move_legal(color: String, row:int, dest: int) -> bool:
 	return true
 
 func capture_piece(color: String, row: int) -> void:
-	pass
+	board[color][row] -= 1
+	boardNode.move_piece(color, row, 0)
 
 func get_out_of_prison():
 	pass
@@ -159,11 +223,26 @@ func is_black_bearing_off():
 	pass
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_resign_button_pressed() -> void:
+	resign.rpc(board.player)
+
+@rpc("any_peer", "call_remote", "reliable")
+func resign(color: String) -> void:
+	pass
+
+
+
+
+func _on_tigru_button_pressed() -> void:
+	pass # Replace with function body.
+
+
+func _on_end_turn_button_pressed() -> void:
+	switch_turn.rpc()

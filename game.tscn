@@ -2,10 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://d3isikksumkm5" path="res://assets/board.glb" id="1_7jktm"]
 [ext_resource type="PackedScene" uid="uid://ddhe67tku4cj0" path="res://assets/dice.glb" id="1_fc0e3"]
+[ext_resource type="Script" uid="uid://cl2i3y7bqnad1" path="res://game.gd" id="1_ryrav"]
 [ext_resource type="PackedScene" uid="uid://c0ta50wb776wb" path="res://assets/piece-w.glb" id="3_ryrav"]
 [ext_resource type="PackedScene" uid="uid://b1n63vhl7t17w" path="res://assets/piece-b.glb" id="4_eow3j"]
 
-[node name="Node3D" type="Node3D" unique_id=2070608447]
+[node name="Node" type="Node" unique_id=698801991]
+script = ExtResource("1_ryrav")
 
 [node name="board" parent="." unique_id=936023970 instance=ExtResource("1_7jktm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.273016, 0, -0.29463387)
@@ -18,3 +20,59 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6721673, 0, 10.760672)
 
 [node name="piece-b" parent="." unique_id=827817385 instance=ExtResource("4_eow3j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.200912, 9.536743e-07, 11.819025)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=752963323]
+layer = 2
+
+[node name="PlayerUI" type="Control" parent="HUD" unique_id=433647122]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/PlayerUI" unique_id=1633303521]
+custom_minimum_size = Vector2(200, 500)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="EndTurnButton" type="Button" parent="HUD/PlayerUI/VBoxContainer" unique_id=714511602]
+layout_mode = 2
+size_flags_vertical = 3
+text = "End Turn"
+
+[node name="RollButton" type="Button" parent="HUD/PlayerUI/VBoxContainer" unique_id=119691934]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Roll Dice"
+
+[node name="ResignButton" type="Button" parent="HUD/PlayerUI/VBoxContainer" unique_id=1015667006]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Resign"
+
+[node name="TigruButton" type="Button" parent="HUD/PlayerUI/VBoxContainer" unique_id=269400264]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Gheara de tigru"
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1364533668]
+transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -4.0345116, 9.631356, 10.011218)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1693842190]
+transform = Transform3D(0.9081001, 1.3531746e-08, -0.41875315, 0.3632458, 0.49753118, 0.78772795, 0.20834275, -0.8674461, 0.45180815, -4.0345116, 9.631356, 10.011218)
+light_energy = 16.0
+omni_range = 1097.272
+
+[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
+[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/ResignButton" to="." method="_on_resign_button_pressed"]
+[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/TigruButton" to="." method="roll_dice"]
