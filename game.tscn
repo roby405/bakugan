@@ -1,20 +1,20 @@
 [gd_scene format=3 uid="uid://dr1lh0kpakg2i"]
 
-[ext_resource type="PackedScene" uid="uid://qxxl4touesqw" path="res://assets/dice.glb" id="1_fc0e3"]
-[ext_resource type="PackedScene" uid="uid://uh7p5ry6v3xv" path="res://assets/board-bakugan3.glb" id="2_7jktm"]
-[ext_resource type="PackedScene" uid="uid://c2iddlay8lg7b" path="res://assets/piece-b-bakugan.fbx" id="3_ryrav"]
-[ext_resource type="PackedScene" uid="uid://copb26wpjwxts" path="res://assets/piece-w-bakugan.fbx" id="4_eow3j"]
+[ext_resource type="PackedScene" uid="uid://d3isikksumkm5" path="res://assets/board.glb" id="1_7jktm"]
+[ext_resource type="PackedScene" uid="uid://ddhe67tku4cj0" path="res://assets/dice.glb" id="1_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://c0ta50wb776wb" path="res://assets/piece-w.glb" id="3_ryrav"]
+[ext_resource type="PackedScene" uid="uid://b1n63vhl7t17w" path="res://assets/piece-b.glb" id="4_eow3j"]
 
 [node name="Node3D" type="Node3D" unique_id=2070608447]
 
-[node name="dice" parent="." unique_id=1232948220 instance=ExtResource("1_fc0e3")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.96708935, 0.057086945, 0.73608494)
+[node name="board" parent="." unique_id=936023970 instance=ExtResource("1_7jktm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.273016, 0, -0.29463387)
 
-[node name="board-bakugan3" parent="." unique_id=1753720653 instance=ExtResource("2_7jktm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.220143, 0, 0.57104874)
+[node name="dice" parent="." unique_id=1401142141 instance=ExtResource("1_fc0e3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6540923, 0, -4.40455)
 
-[node name="piece-b-bakugan" parent="." unique_id=1269219579 instance=ExtResource("3_ryrav")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.051217, -9.536743e-07, -7.32825)
+[node name="piece-w" parent="." unique_id=2033145743 instance=ExtResource("3_ryrav")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6721673, 0, 10.760672)
 
-[node name="piece-w-bakugan" parent="." unique_id=1872118781 instance=ExtResource("4_eow3j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.009074, 0, -12.113293)
+[node name="piece-b" parent="." unique_id=827817385 instance=ExtResource("4_eow3j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.200912, 9.536743e-07, 11.819025)

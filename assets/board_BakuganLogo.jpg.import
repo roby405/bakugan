@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xaaoblpwqy5s"
-path.s3tc="res://.godot/imported/board-bakugan3_dark_wood_diff_4k.jpg-cab02cb6b5609f23aedbb68c66317b92.s3tc.ctex"
+uid="uid://b0ip6hsg4vxi0"
+path.s3tc="res://.godot/imported/board_BakuganLogo.jpg-2b8d306e4c34547ea42588b4b2911d69.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "a248f7ccf1049eade533d9470486947f"
+"md5": "8cdd49d0614d160680ff84db2454de44"
 }
 
 [deps]
 
-source_file="res://assets/board-bakugan3_dark_wood_diff_4k.jpg"
-dest_files=["res://.godot/imported/board-bakugan3_dark_wood_diff_4k.jpg-cab02cb6b5609f23aedbb68c66317b92.s3tc.ctex"]
+source_file="res://assets/board_BakuganLogo.jpg"
+dest_files=["res://.godot/imported/board_BakuganLogo.jpg-2b8d306e4c34547ea42588b4b2911d69.s3tc.ctex"]
 
 [params]
 
