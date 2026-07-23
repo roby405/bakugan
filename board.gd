@@ -3,7 +3,7 @@ extends Node3D
 const BLACK_PIECE = preload("res://black_piece.tscn")
 const WHITE_PIECE = preload("res://white_piece.tscn")
 
-const INITIAL_WHITE_PLAYER_STATE = {
+var INITIAL_WHITE_PLAYER_STATE: Dictionary = {
 	"pieces": {
 		6: 5,
 		8: 3,
@@ -12,7 +12,7 @@ const INITIAL_WHITE_PLAYER_STATE = {
 	}
 }
 
-const INITIAL_BLACK_PLAYER_STATE = {
+var INITIAL_BLACK_PLAYER_STATE: Dictionary = {
 	"pieces": {
 		19: 5,
 		17: 3,
@@ -21,16 +21,16 @@ const INITIAL_BLACK_PLAYER_STATE = {
 	}
 }
 
-var board = {
+var board: Dictionary = {
 	"turn": 1,
 	"toPlay": "white"
 }
 
-var player
+var player: String
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	initialize_game("W", "arst", "W", "art", "B")
 
 func initialize_game(player, nameP1, colorP1, nameP2, colorP2) -> void:
 	self.player = player
@@ -51,23 +51,29 @@ func initialize_player(name: String, color: String) -> void:
 		board["B"] = new_player
 
 func setup_board() -> void:
-	for row in INITIAL_WHITE_PLAYER_STATE:
-		for _i in range(INITIAL_WHITE_PLAYER_STATE[row]):
+	for row in INITIAL_WHITE_PLAYER_STATE["pieces"]:
+		for _i in range(INITIAL_WHITE_PLAYER_STATE["pieces"][row]):
 			add_piece("W", row)
-	for row in INITIAL_BLACK_PLAYER_STATE:
-		for _i in range(INITIAL_BLACK_PLAYER_STATE[row]):
+	for row in INITIAL_BLACK_PLAYER_STATE["pieces"]:
+		for _i in range(INITIAL_BLACK_PLAYER_STATE["pieces"][row]):
 			add_piece("B", row)
 
 ### only visually, doesn't manage logic, that should be done by make_move
 func add_piece(color: String, row: int) -> void:
-	var pos = get_node("%%s%i" % color % row) # +- width * how many children
+	var node_name = "%s%d" % [color, row]
+	print(node_name)
+	var pos
+	if row <= 12:
+		pos = get_node("%" + node_name).global_position + Vector3(1.15, 0, 0) * get_node("%" + node_name).get_child_count()
+	else:
+		pos = get_node("%" + node_name).global_position - Vector3(1.15, 0, 0) * get_node("%" + node_name).get_child_count()
 	var new_piece
 	if color == "W":
 		new_piece = WHITE_PIECE.instantiate()
 	else:
 		new_piece = BLACK_PIECE.instantiate()
+	get_node("%" + node_name).add_child(new_piece)
 	new_piece.global_position = pos
-	get_node("%%s%i" % color % row).add_child(new_piece)
 
 func remove_piece(color: String, row: int) -> void:
 	board[color][row] -= 1

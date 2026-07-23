@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://c6d5qmvov5tfc"]
 
+[ext_resource type="PackedScene" uid="uid://c0ta50wb776wb" path="res://assets/piece-w.glb" id="1_m8y0c"]
+
 [node name="Piece" type="Node3D" unique_id=191121857]
+
+[node name="piece-w" parent="." unique_id=557406341 instance=ExtResource("1_m8y0c")]
