@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ugnya16wnm5f"]
+
+[ext_resource type="PackedScene" uid="uid://ddhe67tku4cj0" path="res://assets/dice.glb" id="1_ju2fo"]
+
+[node name="dice" unique_id=1401142141 instance=ExtResource("1_ju2fo")]
+
+[node name="Normals" type="Node3D" parent="." index="1" unique_id=1572787769]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Normals" index="0" unique_id=472507127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3517325, 0)
