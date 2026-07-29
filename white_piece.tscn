@@ -1,18 +1,20 @@
 [gd_scene format=3 uid="uid://c6d5qmvov5tfc"]
 
-[ext_resource type="PackedScene" uid="uid://c0ta50wb776wb" path="res://assets/piece-w.glb" id="1_m8y0c"]
+[ext_resource type="Script" uid="uid://xfpg1584h3ow" path="res://piece.gd" id="1_2uvmj"]
+[ext_resource type="PackedScene" uid="uid://1aj5xi3e7jmp" path="res://assets/piece_w_2.tscn" id="1_m8y0c"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_m8y0c"]
 height = 0.3
 radius = 0.67
 
 [node name="Piece2" type="Node3D" unique_id=191121857]
+script = ExtResource("1_2uvmj")
 
-[node name="piece-w" parent="." unique_id=557406341 instance=ExtResource("1_m8y0c")]
-transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0, 0)
-
-[node name="Area" type="Area3D" parent="piece-w" unique_id=1760743402]
+[node name="pieceNode" parent="." unique_id=292020924 instance=ExtResource("1_m8y0c")]
 unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="piece-w/Area" unique_id=661057935]
+[node name="Area" type="Area3D" parent="pieceNode" unique_id=1760743402]
+unique_name_in_owner = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="pieceNode/Area" unique_id=661057935]
 shape = SubResource("CylinderShape3D_m8y0c")

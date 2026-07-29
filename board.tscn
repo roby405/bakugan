@@ -11,6 +11,10 @@ script = ExtResource("1_psm7c")
 [node name="White" type="Node3D" parent="Pieces" unique_id=1199609709]
 unique_name_in_owner = true
 
+[node name="W0" type="Marker3D" parent="Pieces/White" unique_id=127005557]
+unique_name_in_owner = true
+transform = Transform3D(-1, 8.742278e-08, 0, -8.742278e-08, -1, 0, 0, 0, 1, 5.507938, 1.1927185, 0.00621891)
+
 [node name="W1" type="Marker3D" parent="Pieces/White" unique_id=1348663459]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.84, 0.003, 8.29226)
@@ -113,6 +117,10 @@ gizmo_extents = 1.13
 
 [node name="Black" type="Node3D" parent="Pieces" unique_id=1275855586]
 unique_name_in_owner = true
+
+[node name="B0" type="Marker3D" parent="Pieces/Black" unique_id=1939093352]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.095327, 1.1927185, 0.00621891)
 
 [node name="B1" type="Marker3D" parent="Pieces/Black" unique_id=607717902]
 unique_name_in_owner = true
