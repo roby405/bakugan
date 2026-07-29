@@ -70,6 +70,6 @@ omni_range = 1097.272
 unique_name_in_owner = true
 
 [connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/EndTurnButton" to="." method="_on_end_turn_button_pressed"]
-[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/RollButton" to="." method="_on_roll_button_pressed"]
+[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/RollButton" to="." method="roll_dice"]
 [connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/ResignButton" to="." method="_on_resign_button_pressed"]
-[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/TigruButton" to="." method="roll_dice"]
+[connection signal="pressed" from="HUD/PlayerUI/VBoxContainer/TigruButton" to="." method="_on_tigru_button_pressed"]

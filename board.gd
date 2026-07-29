@@ -13,7 +13,7 @@ func setup_board(board: Dictionary) -> void:
 			add_piece("B", row)
 
 ### only visually, doesn't manage logic, that should be done by make_move
-func add_piece(color: String, row: int) -> void:
+func add_piece(color: String, row: int, temp = false) -> void:
 	var node_name = "%s%d" % [color, row]
 	var pos
 	if row <= 12:
@@ -26,6 +26,9 @@ func add_piece(color: String, row: int) -> void:
 	else:
 		new_piece = BLACK_PIECE.instantiate()
 	get_node("%" + node_name).add_child(new_piece)
+	if temp:
+		
+	new_piece.get_node("%Area").input_event.connect(get_parent()._on_piece_pressed.bind(color, row))
 	new_piece.global_position = pos
 
 func remove_piece(color: String, row: int) -> void:

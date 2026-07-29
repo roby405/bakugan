@@ -6,12 +6,13 @@
 height = 0.3
 radius = 0.67
 
-[node name="Piece" type="Node3D" unique_id=191121857]
+[node name="Piece2" type="Node3D" unique_id=191121857]
 
 [node name="piece-w" parent="." unique_id=557406341 instance=ExtResource("1_m8y0c")]
 transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="piece-w" unique_id=1760743402]
+[node name="Area" type="Area3D" parent="piece-w" unique_id=1760743402]
+unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="piece-w/Area3D" unique_id=661057935]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="piece-w/Area" unique_id=661057935]
 shape = SubResource("CylinderShape3D_m8y0c")

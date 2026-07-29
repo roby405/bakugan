@@ -11,7 +11,8 @@ radius = 0.67
 [node name="piece-b" parent="." unique_id=401715758 instance=ExtResource("1_s23uw")]
 transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 1, 0, 0, 0)
 
-[node name="Area3D" type="Area3D" parent="piece-b" unique_id=951585411]
+[node name="Area" type="Area3D" parent="piece-b" unique_id=951585411]
+unique_name_in_owner = true
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="piece-b/Area3D" unique_id=1256503573]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="piece-b/Area" unique_id=1256503573]
 shape = SubResource("CylinderShape3D_yhysn")

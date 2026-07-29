@@ -10,6 +10,9 @@ enum MOVES {
 @onready
 var boardNode = get_node("%Board")
 
+var piece_picked = false
+var piece_row: int
+
 var white_bearing_off = false
 var black_bearing_off = false
 var white_has_in_prison = false
@@ -237,8 +240,21 @@ func _on_resign_button_pressed() -> void:
 func resign(color: String) -> void:
 	pass
 
-
-
+# should work for both transparent and non transparent pieces when both piece is picked and move is selected
+func _on_piece_pressed(_camera, event, _ev_pos, _normal, _sh_idx, color, row):
+	if color != player:
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+		if not piece_picked:
+			var moves = get_legal_moves(color, row)
+			piece_picked = true
+			piece_row = row
+			boardNode.show_possible_moves(moves)
+		else:
+			if is_move_legal(color, piece_row, row):
+				make_move.rpc(MOVES.MOVE, color, piece_row, row)
+			piece_picked = false
+			boardNode.destroy_possible_moves()
 
 func _on_tigru_button_pressed() -> void:
 	pass # Replace with function body.

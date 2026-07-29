@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://1aj5xi3e7jmp"]
+
+[ext_resource type="PackedScene" uid="uid://c0ta50wb776wb" path="res://assets/piece-w.glb" id="1_6ymwy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ue2a6"]
+albedo_color = Color(0.88235295, 0.15294118, 0.1882353, 1)
+
+[node name="piece-w2" unique_id=292020924 instance=ExtResource("1_6ymwy")]
+
+[node name="piece-w" parent="." index="0" unique_id=1751613074]
+surface_material_override/0 = SubResource("StandardMaterial3D_ue2a6")
