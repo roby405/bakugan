@@ -45,6 +45,15 @@ var INITIAL_BLACK_PLAYER_STATE: Dictionary = {
 	}
 }
 
+const dice_faces: Array[String] = [
+	"Normals/1",
+	"Normals/2",
+	"Normals/3",
+	"Normals/4",
+	"Normals/5",
+	"Normals/6"
+]
+
 var board: Dictionary = {
 	"turn": 1,
 	"toPlay": "white"
@@ -55,6 +64,9 @@ var player: String
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	initialize_game("W", "arst", "W", "art", "B")
+	
+func wait(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
 
 func initialize_game(player, nameP1, colorP1, nameP2, colorP2) -> void:
 	self.player = player
@@ -75,16 +87,88 @@ func initialize_player(name: String, color: String) -> void:
 		board["B"] = new_player
 
 func roll_dice() -> void:
-	var die1: int = randi_range(1, 6)
-	var die2: int = randi_range(1, 6)
-	broadcast_dice_roll.rpc(die1, die2)
+	var dice1 = $dice1
+	var dice2 = $dice2
+	
+	# create physics properties for dices
+	var physics_mat: PhysicsMaterial = PhysicsMaterial.new()
+	dice1.physics_material_override = physics_mat
+	dice2.physics_material_override = physics_mat
+	
+	# reset parameters so no weird spinning or jiggling prevents reroll
+	dice1.linear_velocity = Vector3.ZERO
+	dice1.angular_velocity = Vector3.ZERO
+	dice2.linear_velocity = Vector3.ZERO
+	dice2.angular_velocity = Vector3.ZERO
+	
+	### not sure if needed in final build
+	### prevents reroll animation not triggering on multiple clicks
+	dice1.freeze = true
+	dice2.freeze = true
+	await get_tree().physics_frame
+	dice1.freeze = false
+	dice2.freeze = false
+	
+	physics_mat.absorbent = false
+	physics_mat.friction = 0.5
+	physics_mat.bounce = 200
+	
+	dice1.position = Vector3(0.27, 5.776, 16.46)
+	dice2.position = Vector3(0.54, 5.776, 14.36)
+	
+	await wait(1)
+	physics_mat.bounce = 0.5
+	await wait(1)
+	physics_mat.bounce = 0.2
+	await wait(1)
+	physics_mat.bounce = 0
+	
+	#while not (dice1.sleeping and dice2.sleeping):
+		#await get_tree().physics_frame
+	
+	#var die1: int = randi_range(1, 6)
+	#var die2: int = randi_range(1, 6)
 
-@rpc("any_peer", "call_remote", "reliable")
+	dice_roll = get_dies(dice1, dice2)
+	var die1: int = dice_roll[0]
+	var die2: int = dice_roll[1]
+	broadcast_dice_roll.rpc(die1, die2)
+	print("Rolled Dice:" + str(die1) + " " + str(die2))
+	
+
+@rpc("any_peer", "call_local", "reliable")
 func broadcast_dice_roll(die1: int, die2: int) -> void:
 	if die1 == die2:
 		dice_roll = [die1, die1, die1, die1]
 	else:
 		dice_roll = [die1, die2]
+		
+func get_dies(dice1: RigidBody3D, dice2: RigidBody3D):
+	var die1: int
+	var die2: int
+	
+	die1 = get_top_face(dice1)
+	die2 = get_top_face(dice2)
+	return [die1, die2]
+		
+func get_top_face(dice: RigidBody3D) -> int:
+	var best_face_dot: float = -1.0	# worst it can be is upside down
+	var best_face: int
+	
+	for i in range(dice_faces.size()):
+		var face: Node3D = dice.get_node_or_null(dice_faces[i])
+		
+		if face != null:
+			var face_dir: Vector3 = face.global_transform.basis.y.normalized()
+			var face_dot = face_dir.dot(Vector3.UP)
+			
+			if (face_dot > best_face_dot):
+				best_face_dot = face_dot
+				best_face = i + 1		# 0-indexed array
+		else:
+			print("face node not assigned")
+			
+	return best_face
 
 @rpc("any_peer", "call_remote", "reliable")
 func make_move(moveType: MOVES, color: String, row: int, dest: int):
@@ -262,3 +346,21 @@ func _on_tigru_button_pressed() -> void:
 
 func _on_end_turn_button_pressed() -> void:
 	switch_turn.rpc()
+	
+
+func _on_roll_button_pressed() -> void:
+	roll_dice()
+
+func _on_dice_1_sleeping_state_changed() -> bool:
+	if ($dice1.sleeping):
+		return true
+	return false
+
+
+func _on_dice_2_sleeping_state_changed() -> bool:
+	if ($dice2.sleeping):
+		return true
+	return false
+
+func _physics_process(delta: float) -> void:
+	pass
