@@ -22,8 +22,16 @@ func add_piece(color: String, row: int, temp = false) -> void:
 	var pos
 	if row <= 12:
 		pos = get_node("%" + node_name).global_position + Vector3(1.15, 0, 0) * get_node("%" + node_name).get_child_count()
+		if temp:
+			var other_color = "W" if color == "B" else "B"
+			var other_row_children = get_node("%" + other_color + row).get_child_count()
+			pos += Vector3(1.15, 0, 0) * get_node("%" + node_name).get_child_count()
 	else:
 		pos = get_node("%" + node_name).global_position - Vector3(1.15, 0, 0) * get_node("%" + node_name).get_child_count()
+		if temp:
+			var other_color = "W" if color == "B" else "B"
+			var other_row_children = get_node("%" + other_color + row).get_child_count()
+			pos -= Vector3(1.15, 0, 0) * get_node("%" + node_name).get_child_count()
 	var new_piece
 	if color == "W":
 		new_piece = WHITE_PIECE.instantiate()
@@ -49,8 +57,10 @@ func add_piece(color: String, row: int, temp = false) -> void:
 
 func remove_piece(color: String, row: int) -> void: # dont forget to disconnect signals
 	var node_name = "%s%d" % [color, row]
-	var removed_piece = get_top_piece(color, row)
+	#var removed_piece = get_top_piece(color, row)
 	var piece_row = get_node("%" + node_name)
+	var children_count = piece_row.get_child_count()
+	var removed_piece = piece_row.get_child(max(0, children_count - 2))
 	piece_row.remove_child(removed_piece)
 	removed_piece.queue_free()
 
@@ -60,6 +70,8 @@ func remove_temp_pieces() -> void:
 	temp_pieces = []
 
 func move_piece(color: String, row: int, dest: int) -> void:
+	print(row)
+	print(dest)
 	var node_name = "%s%d" % [color, row]
 	var moved_piece = get_top_piece(color, row)
 	var piece_row = get_node("%" + node_name)
@@ -67,6 +79,9 @@ func move_piece(color: String, row: int, dest: int) -> void:
 		#pass
 	#else:
 	var new_piece_row = get_node("%" + color + str(dest))
+	if moved_piece.get_node("%Area").input_event.is_connected(get_parent()._on_piece_pressed):
+		moved_piece.get_node("%Area").input_event.disconnect(get_parent()._on_piece_pressed)
+	moved_piece.get_node("%Area").input_event.connect(get_parent()._on_piece_pressed.bind(color, dest))
 	piece_row.remove_child(moved_piece)
 	new_piece_row.add_child(moved_piece)
 	

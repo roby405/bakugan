@@ -31,11 +31,20 @@ var turn = "W"
 var INITIAL_WHITE_PLAYER_STATE: Dictionary = {
 	"pieces": {
 		6: 5,
-		8: 3,
-		13: 5,
-		24: 2
+		4: 3,
+		3: 5,
+		2: 2
 	}
 }
+
+#var INITIAL_WHITE_PLAYER_STATE: Dictionary = {
+	#"pieces": {
+		#6: 5,
+		#8: 3,
+		#13: 5,
+		#24: 2
+	#}
+#}
 
 var INITIAL_BLACK_PLAYER_STATE: Dictionary = {
 	"pieces": {
@@ -74,6 +83,10 @@ func initialize_game(player, nameP1, colorP1, nameP2, colorP2) -> void:
 	initialize_player(nameP1, colorP1)
 	initialize_player(nameP2, colorP2)
 	boardNode.setup_board(board)
+	board[colorP1]["pieces"][0] = 0
+	board[colorP2]["pieces"][0] = 0
+	white_bearing_off = is_white_bearing_off()
+	black_bearing_off = is_black_bearing_off()
 
 func initialize_player(name: String, color: String) -> void:
 	if color == "W":
@@ -144,8 +157,10 @@ func roll_dice() -> void:
 func broadcast_dice_roll(die1: int, die2: int) -> void:
 	if die1 == die2:
 		dice_roll = [die1, die1, die1, die1]
+		double = true
 	else:
 		dice_roll = [die1, die2]
+		double = false
 		
 func get_dies(dice1: RigidBody3D, dice2: RigidBody3D):
 	var die1: int
@@ -178,59 +193,48 @@ func get_top_face(dice: RigidBody3D) -> int:
 func make_move(moveType: MOVES, color: String, row: int, dest: int):
 	match moveType:
 		MOVES.MOVE:
-
+			if row == dest:
+				return
 			if is_move_legal(color, row, dest):
 				# captures whatever (runs make_move again)
+				# no longer piece on the row (moved)
 				board[color]["pieces"][row] -= 1
+				# if not a direct move
 				if not abs(dest - row) in dice_roll:
-					var non_zero = 0
-					var found = 0
+					var found = -1
+					# find first non_zero die that is a valid move (it can absolutely be done)
 					for i in range(dice_roll.size()):
 						var new_dest = row - dice_roll[i] if color == "W" else row + dice_roll[i]
 						if dice_roll[i] != 0 and is_move_legal(color, row, new_dest):
-							non_zero = i
-							found = dice_roll[i]
+							found = new_dest
 							dice_roll[i] = 0
 							break
-					var new_row = row - found if color == "W" else row + found
-					if not new_row in board[color]["pieces"]:
-						board[color]["pieces"][new_row] = 0
-					board[color]["pieces"][new_row] += 1
-					if color == "W" and row - found in board["B"]["pieces"] and board["B"]["pieces"][row - found] == 1:
-						boardNode.move_piece(color, row, row - found)
-						make_move(MOVES.CAPTURE, color, row - found, dest)
-					elif color == "W":
-						boardNode.move_piece(color, row, row - found)
-						make_move(MOVES.MOVE, color, row - found, dest)
-					if color == "B" and row + found in board["B"]["pieces"] and board["B"]["pieces"][row + found] == 1:
-						make_move(MOVES.CAPTURE, color, row, row + found)
-						boardNode.move_piece(color, row, row + found)
-					elif color == "B":
-						make_move(MOVES.MOVE, color, row, row + found)
-						boardNode.move_piece(color, row, row + found)
+					# move piece on board (no animation)
+					if not found in board[color]["pieces"]:
+						board[color]["pieces"][found] = 0
+					board[color]["pieces"][found] += 1
+					boardNode.move_piece(color, row, found)
+					make_move(MOVES.CAPTURE, color, found, dest)
 				elif abs(dest - row) in dice_roll:
-					var other_color = "W" if color == "B" else "B"
-					if boardNode.get_node("%" + other_color + str(dest)).get_child_count() == 1:
-						make_move(MOVES.CAPTURE, color, row, dest)
-					else:
-						if dest == 0: # prison
-							pass
-						else:
-							if not dest in board[color]:
-								board[color]["pieces"][dest] = 0
-							board[color]["pieces"][dest] += 1
-						dice_roll[dice_roll.find(abs(dest - row))] = 0
-						#make_move(MOVES.MOVE, color, row, dest)
-						boardNode.move_piece(color, row, dest)
+					# maybe treat prison case separately
+					if not dest in board[color]:
+						board[color]["pieces"][dest] = 0
+					board[color]["pieces"][dest] += 1
+					dice_roll[dice_roll.find(abs(dest - row))] = 0
+					boardNode.move_piece(color, row, dest)
+					make_move(MOVES.CAPTURE, color, dest, dest)
 				
 		MOVES.CAPTURE:
 			var other_color = "W" if color == "B" else "B"
-			capture_piece(other_color, dest)
+			capture_piece(other_color, row)
 			make_move(MOVES.MOVE, color, row, dest)
 		MOVES.BORNE_OFF:
 			borne_off_piece(color, row)
 		MOVES.PRISON_ESCAPE:
-			pass
+			get_out_of_prison(color, dest)
+			make_move(MOVES.CAPTURE, color, dest, dest)
+	white_bearing_off = is_white_bearing_off()
+	black_bearing_off = is_black_bearing_off()
 	print("now what")
 	
 @rpc("any_peer", "call_remote", "reliable")
@@ -245,8 +249,6 @@ func switch_turn() -> void:
 	# some signal gets sent off that switches the hud visibility whatever
 
 func get_legal_moves(color: String, row:int):
-	if row == 0:
-		pass
 	var legal = []
 	for dest in range(1, 25):
 		if is_move_legal(color, row, dest):
@@ -259,99 +261,151 @@ func is_move_legal(color: String, row:int, dest: int) -> bool:
 		return false
 	if dest < 1 or dest > 24:
 		return false
-	if row == dest and color == "W" and not white_bearing_off:
+	if row == 0 and color == "W" and dest < 19:
 		return false
-	if row == dest and color == "B" and not black_bearing_off:
+	if row == 0 and color == "B" and dest > 6 and dest != 0:
 		return false
-	if color == "W" and dest > row:
-		return false
-	if color == "B" and dest < row:
-		return false
-	if color == "W" and white_has_in_prison:
-		return false
-	if color == "B" and black_has_in_prison:
-		return false
-	if color == "W" and get_node("%Board").get_node("%B" + str(dest)).get_child_count() > 1:
-		return false
-	if color == "B" and get_node("%Board").get_node("%W" + str(dest)).get_child_count() > 1:
-		return false
-	# TODO code for prison escape
-	var movement = abs(dest - row)
-	if not movement in dice_roll:
-		var sum = 0
-		for die in dice_roll:
-			sum += die
-		if sum == 0:
+	if row == 0:
+		var other_color = "W" if color == "B" else "B"
+		var new_dest = dest
+		if color == "W":
+			new_dest = dest - 18 # normalizes destination
+		if new_dest not in dice_roll:
 			return false
-		if not double and sum != movement:
+		if new_dest in dice_roll and dest in board[other_color]["pieces"] and board[other_color]["pieces"][dest] > 1:
 			return false
-		if not double and sum == movement:
-			# intermove legality
-			var new_row
-			if color == "W":
-				new_row = row - dice_roll[0]
-			else:
-				new_row = row + dice_roll[0]
-			var found = false
-			if color == "W" and get_node("%Board").get_node("%B" + str(new_row)).get_child_count() <= 1:
-				found = true
-			if color == "B" and get_node("%Board").get_node("%W" + str(new_row)).get_child_count() <= 1:
-				found = true
-			if not found:
+	else:
+		if row == dest and color == "W" and not white_bearing_off:
+			return false
+		if row == dest and color == "B" and not black_bearing_off:
+			return false
+
+		if color == "W" and dest > row:
+			return false
+		if color == "B" and dest < row:
+			return false
+		if color == "W" and white_has_in_prison:
+			return false
+		if color == "B" and black_has_in_prison:
+			return false
+		if color == "W" and white_bearing_off and dest in dice_roll and row == dest:
+			return true
+		if color == "B" and black_bearing_off and dest - 18 in dice_roll and row == dest:
+			return true
+		if color == "W" and get_node("%Board").get_node("%B" + str(dest)).get_child_count() > 1:
+			return false
+		if color == "B" and get_node("%Board").get_node("%W" + str(dest)).get_child_count() > 1:
+			return false
+		# TODO code for prison escape
+		var movement = abs(dest - row)
+		if not movement in dice_roll: # 2->6 2->8 2->10
+			var sum = 0
+			for die in dice_roll:
+				sum += die
+			if sum == 0:
+				return false
+			if not double and sum != movement:
+				return false
+			if not double and sum == movement:
+				# intermove legality
+				var new_row
 				if color == "W":
-					new_row = row - dice_roll[1]
+					new_row = row - dice_roll[0]
 				else:
-					new_row = row + dice_roll[1]
+					new_row = row + dice_roll[0]
+				var found = false
 				if color == "W" and get_node("%Board").get_node("%B" + str(new_row)).get_child_count() <= 1:
 					found = true
 				if color == "B" and get_node("%Board").get_node("%W" + str(new_row)).get_child_count() <= 1:
 					found = true
-				if found != true:
+				if not found:
+					if color == "W":
+						new_row = row - dice_roll[1]
+					else:
+						new_row = row + dice_roll[1]
+					if color == "W" and get_node("%Board").get_node("%B" + str(new_row)).get_child_count() <= 1:
+						found = true
+					if color == "B" and get_node("%Board").get_node("%W" + str(new_row)).get_child_count() <= 1:
+						found = true
+					if found != true:
+						return false
+				
+				
+			# also check inter moves
+			if double:
+				var nonzero_die = 0
+				for die in dice_roll:
+					if die != 0:
+						nonzero_die = die
+						break
+				# 4 6 8 % 2
+				if movement % nonzero_die != 0:
 					return false
-			
-			
-		# also check inter moves
-		if double:
-			var nonzero_die = 0
-			for die in dice_roll:
-				if die != 0:
-					nonzero_die = die
-					break
-			if movement % nonzero_die != 0:
-				return false
-			var new_row
-			var found = true
-			for _i in range(movement/nonzero_die - 1):
-				if color == "W":
-					new_row = row - nonzero_die
-				else:
-					new_row = row + nonzero_die
-				if color == "W" and get_node("%Board").get_node("%B" + str(new_row)).get_child_count() <= 1:
-					found = true and found
-				elif color == "B" and get_node("%Board").get_node("%W" + str(new_row)).get_child_count() <= 1:
-					found = true and found
-				else:
-					found = false
-					break
-			if not found:
-				return false
+				var new_row
+				var found = true
+				# 1 2 3
+				for _i in range(movement/nonzero_die - 1):
+					print("should be here")
+					if color == "W":
+						new_row = row - nonzero_die
+					else:
+						new_row = row + nonzero_die
+					if color == "W" and boardNode.get_node("%B" + str(new_row)).get_child_count() <= 1:
+						found = true and found
+					elif color == "B" and boardNode.get_node("%W" + str(new_row)).get_child_count() <= 1:
+						found = true and found
+					else:
+						found = false
+						break
+					row = new_row
+				if not found:
+					return false
+		print("ok")
+		print(movement)
 	return true
 
 func capture_piece(color: String, row: int) -> void:
-	board[color]["pieces"][row] -= 1
-	boardNode.move_piece(color, row, 0)
+	if row in board[color]["pieces"] and board[color]["pieces"][row] == 1:
+		board[color]["pieces"][row] -= 1
+		board[color]["pieces"][0] += 1
+		boardNode.move_piece(color, row, 0)
+		if color == "W":
+			white_has_in_prison = true
+		else:
+			black_has_in_prison = true
 
-func get_out_of_prison():
-	pass
+func get_out_of_prison(color, row):
+	board[color]["pieces"][0] -= 1
+	if not row in board[color]["pieces"]:
+		board[color]["pieces"][row] = 0
+	board[color]["pieces"][row] += 1
+	var die = row if row < 7 else row - 18
+	dice_roll[dice_roll.find(die)] = 0
+	boardNode.move_piece(color, 0, row)
+	if board[color]["pieces"][0] == 0:
+		if color == "W":
+			white_has_in_prison = false
+		else:
+			black_has_in_prison = false
 
 func borne_off_piece(color: String, row: int):
-	pass
+	board[color]["pieces"][row] -= 1
+	var die = row if row < 7 else row - 18
+	dice_roll[dice_roll.find(die)] = 0
+	# possibly dumb bug with getting the temp piece instead
+	boardNode.remove_piece(color, row)
 
-func is_white_bearing_off():
-	pass
+func is_white_bearing_off() -> bool:
+	for key in board["W"]["pieces"]:
+		if (key == 0 or key > 6) and board["W"]["pieces"][key] > 0:
+			return false
+	return true
 
-func is_black_bearing_off():
-	pass
+func is_black_bearing_off() -> bool:
+	for key in board["B"]["pieces"]:
+		if key < 19 and board["B"]["pieces"][key] > 0:
+			return false
+	return true
 
 
 
@@ -382,11 +436,18 @@ func _on_piece_pressed(_camera, event, _ev_pos, _normal, _sh_idx, color, row):
 			print("Fuck")
 		else:
 			print("hiii")
-			if is_move_legal(color, piece_row, row):
+			if is_move_legal(color, piece_row, row) and piece_row == row:
+				make_move(MOVES.BORNE_OFF, color, piece_row, row)
+				piece_picked = false
+				boardNode.remove_temp_pieces()
+			elif is_move_legal(color, piece_row, row):
 				#make_move.rpc(MOVES.MOVE, color, piece_row, row)
-				make_move(MOVES.MOVE, color, piece_row, row)
-			piece_picked = false
-			boardNode.remove_temp_pieces()
+				if piece_row != 0:
+					make_move(MOVES.MOVE, color, piece_row, row)
+				else:
+					make_move(MOVES.PRISON_ESCAPE, color, piece_row, row)
+				piece_picked = false
+				boardNode.remove_temp_pieces()
 
 func _on_tigru_button_pressed() -> void:
 	pass # Replace with function body.
